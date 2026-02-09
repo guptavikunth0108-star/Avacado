@@ -7,7 +7,6 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       background: #d8c6f2; /* lilac */
       font-family: Arial, sans-serif;
       display: flex;
@@ -15,95 +14,94 @@
       align-items: center;
       height: 100vh;
       overflow: hidden;
-    }
-
-    .container {
       text-align: center;
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      max-width: 500px;
-      width: 90%;
       position: relative;
     }
 
+    /* Floating decor */
+    .decor {
+      position: absolute;
+      font-size: 32px;
+      opacity: 0.9;
+    }
+    .d1 { top: 5%; left: 8%; }
+    .d2 { top: 15%; right: 10%; }
+    .d3 { bottom: 10%; left: 12%; }
+    .d4 { bottom: 8%; right: 15%; }
+    .d5 { top: 40%; left: 2%; }
+    .d6 { top: 50%; right: 3%; }
+
+    .content {
+      max-width: 500px;
+      width: 90%;
+    }
+
     img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
       display: block;
       margin: 0 auto 20px auto;
-      max-width: 100%;
-      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      font-weight: normal;
     }
 
     .button-row {
       display: flex;
       justify-content: center;
+      gap: 20px;
       align-items: center;
-      gap: 15px;
     }
 
     .yes-btn {
       background: #4CAF50;
       color: white;
       border: none;
-      padding: 15px 35px;
+      padding: 16px 40px;
       font-size: 18px;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
     }
 
     .no-btn {
-      background: #ccc;
+      background: #cccccc;
       border: none;
-      padding: 8px 12px;
-      font-size: 12px;
+      padding: 6px 10px;
+      font-size: 11px;
       border-radius: 6px;
       cursor: pointer;
     }
-
-    .decor {
-      position: absolute;
-      font-size: 28px;
-    }
-
-    .a1 { top: -15px; left: -15px; }
-    .a2 { top: -15px; right: -15px; }
-    .a3 { bottom: -15px; left: -15px; }
-    .a4 { bottom: -15px; right: -15px; }
 
     /* Confetti */
     .confetti {
       position: fixed;
       width: 10px;
       height: 10px;
-      top: 0;
-      animation: fall 3s linear forwards;
+      top: -10px;
+      animation: fall linear forwards;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(100vh) rotate(720deg);
+        transform: translateY(110vh) rotate(720deg);
         opacity: 0;
       }
     }
   </style>
 
   <script>
+    // Password protection
     let pass = prompt("Password:");
-    if(pass !== "220124") {
+    if (pass !== "220124") {
       document.write("<h1>Access Denied</h1>");
     }
 
     function sayYes() {
-      document.body.innerHTML = `
-        <div style="text-align:center; font-family:Arial; padding-top:20%;">
-          <h1>YAYYYYY IM SOOOO HAPPY</h1>
-        </div>
-      `;
+      document.body.innerHTML = "<h1 style='margin-top:40vh;font-family:Arial;'>YAYYYYY IM SOOOO HAPPY</h1>";
       launchConfetti();
     }
 
@@ -112,12 +110,12 @@
     }
 
     function launchConfetti() {
-      for(let i=0;i<80;i++){
+      for (let i = 0; i < 100; i++) {
         let c = document.createElement("div");
         c.className = "confetti";
-        c.style.left = Math.random()*100 + "vw";
-        c.style.background = "hsl(" + Math.random()*360 + ", 100%, 50%)";
-        c.style.animationDuration = (Math.random()*2+2)+"s";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+        c.style.animationDuration = (Math.random() * 2 + 2) + "s";
         document.body.appendChild(c);
       }
     }
@@ -125,14 +123,16 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="decor a1">🥑</div>
-    <div class="decor a2">🌻</div>
-    <div class="decor a3">❤️</div>
-    <div class="decor a4">🥑</div>
+  <!-- Decor -->
+  <div class="decor d1">🥑</div>
+  <div class="decor d2">🌻</div>
+  <div class="decor d3">❤️</div>
+  <div class="decor d4">🥑</div>
+  <div class="decor d5">🌻</div>
+  <div class="decor d6">❤️</div>
 
+  <div class="content">
     <img src="photo.jpg" alt="Us">
-
     <h2>Will you be my valentine</h2>
 
     <div class="button-row">
