@@ -7,31 +7,32 @@
   <style>
     body {
       margin: 0;
-      background: #d8c6f2; /* lilac */
-      font-family: Arial, sans-serif;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #d8c6f2, #e9ddff);
       overflow: hidden;
       text-align: center;
-      position: relative;
     }
 
-    /* Floating decor */
     .decor {
       position: absolute;
-      font-size: 32px;
-      opacity: 0.9;
+      font-size: 26px;
+      opacity: 0.5;
     }
-    .d1 { top: 5%; left: 8%; }
-    .d2 { top: 15%; right: 10%; }
-    .d3 { bottom: 10%; left: 12%; }
-    .d4 { bottom: 8%; right: 15%; }
-    .d5 { top: 40%; left: 2%; }
-    .d6 { top: 50%; right: 3%; }
+    .d1 { top: 8%; left: 10%; }
+    .d2 { top: 18%; right: 12%; }
+    .d3 { bottom: 12%; left: 14%; }
+    .d4 { bottom: 10%; right: 15%; }
 
     .content {
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.25);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
       max-width: 500px;
       width: 90%;
     }
@@ -40,43 +41,50 @@
       width: 100%;
       max-width: 420px;
       border-radius: 16px;
-      display: block;
-      margin: 0 auto 20px auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
     }
 
     h2 {
       margin-bottom: 25px;
-      font-weight: normal;
+      font-weight: 500;
     }
 
     .button-row {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      align-items: center;
+      gap: 25px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 38px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
     }
 
     .yes-btn {
       background: #4CAF50;
       color: white;
-      border: none;
-      padding: 16px 40px;
-      font-size: 18px;
-      border-radius: 12px;
-      cursor: pointer;
     }
 
     .no-btn {
-      background: #cccccc;
-      border: none;
-      padding: 6px 10px;
-      font-size: 11px;
-      border-radius: 6px;
-      cursor: pointer;
+      background: #e74c3c;
+      color: white;
+      font-size: 15px;
+      padding: 12px 30px;
     }
 
-    /* Confetti */
+    .heart {
+      font-size: 120px;
+      color: red;
+    }
+
     .confetti {
       position: fixed;
       width: 10px;
@@ -94,23 +102,31 @@
   </style>
 
   <script>
-    // Password protection
     let pass = prompt("Password:");
     if (pass !== "220124") {
       document.write("<h1>Access Denied</h1>");
     }
 
     function sayYes() {
-      document.body.innerHTML = "<h1 style='margin-top:40vh;font-family:Arial;'>YAYYYYY IM SOOOO HAPPY</h1>";
+      document.body.innerHTML = `
+        <div style="text-align:center;margin-top:20vh;font-family:Segoe UI;">
+          <div class="heart">❤️</div>
+          <h1>YAYYYYY IM SOOOO HAPPY</h1>
+        </div>
+      `;
       launchConfetti();
     }
 
     function sayNo() {
-      alert("Try again dont be mean Ill cry:(");
+      document.body.innerHTML = `
+        <div style="text-align:center;margin-top:25vh;font-family:Segoe UI;">
+          <h1>Nooooo not allowed I'll cry:(</h1>
+        </div>
+      `;
     }
 
     function launchConfetti() {
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 120; i++) {
         let c = document.createElement("div");
         c.className = "confetti";
         c.style.left = Math.random() * 100 + "vw";
@@ -123,13 +139,10 @@
 </head>
 
 <body>
-  <!-- Decor -->
   <div class="decor d1">🥑</div>
   <div class="decor d2">🌻</div>
   <div class="decor d3">❤️</div>
-  <div class="decor d4">🥑</div>
-  <div class="decor d5">🌻</div>
-  <div class="decor d6">❤️</div>
+  <div class="decor d4">🌻</div>
 
   <div class="content">
     <img src="photo.jpg" alt="Us">
@@ -137,7 +150,7 @@
 
     <div class="button-row">
       <button class="yes-btn" onclick="sayYes()">YES</button>
-      <button class="no-btn" onclick="sayNo()">no</button>
+      <button class="no-btn" onclick="sayNo()">NO</button>
     </div>
   </div>
 </body>
