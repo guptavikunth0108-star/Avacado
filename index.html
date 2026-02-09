@@ -1,94 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hi</title>
+  <title>For You</title>
   <meta name="robots" content="noindex, nofollow">
 
   <style>
     body {
       margin: 0;
       height: 100vh;
+      background: #e6ddf7; /* soft lilac */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #d8c6f2, #e9ddff);
-      overflow: hidden;
-      text-align: center;
     }
 
-    .decor {
-      position: absolute;
-      font-size: 26px;
-      opacity: 0.5;
-    }
-    .d1 { top: 8%; left: 10%; }
-    .d2 { top: 18%; right: 12%; }
-    .d3 { bottom: 12%; left: 14%; }
-    .d4 { bottom: 10%; right: 15%; }
-
-    .content {
-      backdrop-filter: blur(10px);
-      background: rgba(255,255,255,0.25);
-      padding: 30px 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      max-width: 500px;
+    .card {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 18px;
       width: 90%;
+      max-width: 420px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
     }
 
     img {
       width: 100%;
-      max-width: 420px;
-      border-radius: 16px;
+      border-radius: 14px;
       margin-bottom: 20px;
     }
 
     h2 {
-      margin-bottom: 25px;
       font-weight: 500;
+      margin-bottom: 28px;
     }
 
-    .button-row {
+    .buttons {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 20px;
     }
 
     button {
       border: none;
-      padding: 14px 38px;
-      font-size: 16px;
       border-radius: 12px;
+      padding: 14px 34px;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.15s ease;
     }
 
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    .yes-btn {
-      background: #4CAF50;
+    .yes {
+      background: #3cb371;
       color: white;
     }
 
-    .no-btn {
+    .no {
       background: #e74c3c;
       color: white;
-      font-size: 15px;
-      padding: 12px 30px;
+      padding: 14px 28px;
+    }
+
+    /* Subscreens */
+    .screen {
+      height: 100vh;
+      width: 100%;
+      background: #e6ddf7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
     }
 
     .heart {
       font-size: 120px;
-      color: red;
+      margin-bottom: 20px;
     }
 
+    .back {
+      margin-top: 30px;
+      background: #444;
+      color: white;
+      padding: 10px 26px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    /* Confetti */
     .confetti {
       position: fixed;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       top: -10px;
       animation: fall linear forwards;
     }
@@ -107,30 +110,32 @@
       document.write("<h1>Access Denied</h1>");
     }
 
-    function sayYes() {
+    function yesScreen() {
       document.body.innerHTML = `
-        <div style="text-align:center;margin-top:20vh;font-family:Segoe UI;">
+        <div class="screen">
           <div class="heart">❤️</div>
           <h1>YAYYYYY IM SOOOO HAPPY</h1>
+          <button class="back" onclick="location.reload()">Back</button>
         </div>
       `;
-      launchConfetti();
+      confetti();
     }
 
-    function sayNo() {
+    function noScreen() {
       document.body.innerHTML = `
-        <div style="text-align:center;margin-top:25vh;font-family:Segoe UI;">
-          <h1>Nooooo not allowed I'll cry:(</h1>
+        <div class="screen">
+          <h1>Nooooo not allowed I'll cry :(</h1>
+          <button class="back" onclick="location.reload()">Back</button>
         </div>
       `;
     }
 
-    function launchConfetti() {
-      for (let i = 0; i < 120; i++) {
+    function confetti() {
+      for (let i = 0; i < 100; i++) {
         let c = document.createElement("div");
         c.className = "confetti";
         c.style.left = Math.random() * 100 + "vw";
-        c.style.background = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+        c.style.background = "hsl(" + Math.random()*360 + ",70%,60%)";
         c.style.animationDuration = (Math.random() * 2 + 2) + "s";
         document.body.appendChild(c);
       }
@@ -139,18 +144,12 @@
 </head>
 
 <body>
-  <div class="decor d1">🥑</div>
-  <div class="decor d2">🌻</div>
-  <div class="decor d3">❤️</div>
-  <div class="decor d4">🌻</div>
-
-  <div class="content">
+  <div class="card">
     <img src="photo.jpg" alt="Us">
     <h2>Will you be my valentine</h2>
-
-    <div class="button-row">
-      <button class="yes-btn" onclick="sayYes()">YES</button>
-      <button class="no-btn" onclick="sayNo()">NO</button>
+    <div class="buttons">
+      <button class="yes" onclick="yesScreen()">YES</button>
+      <button class="no" onclick="noScreen()">NO</button>
     </div>
   </div>
 </body>
